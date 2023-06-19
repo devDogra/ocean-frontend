@@ -6,6 +6,23 @@ const main = $('main');
 const btnPosts = $('nav li.posts');
 const btnHome = $('nav li.home');
 const btnUsers = $('nav li.users');
+const btnLogin = $('nav li.login'); 
+const btnRegister = $('nav li.register'); 
+
+const formRegister = $('#register-form'); 
+
+formRegister.on('submit', e => {
+    const data = $(formRegister).serialize();
+    const url = apiUrl + '/users';
+    $.post(url, data, createdUser => {
+        window.alert(`user: ${createdUser.username} created`); 
+    })
+
+})
+
+btnRegister.on('click', e => {
+    
+})
 
 let x = $('template#post').clone();
 console.log(x); 
