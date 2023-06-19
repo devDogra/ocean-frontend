@@ -7,16 +7,17 @@
     <script src="jquery.js"></script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="styles.css">
-    
+    <link rel="stylesheet" href="post.css">
+
 </head>
 <body>
     
     <header>
         <h1>Ocean</h1>
         <nav>
-            <li><a href="">Posts</a></li>
-            <li><a href="">Users</a></li>
-            <li><a href="">Home</a></li>
+            <li class="posts"><a href="">Posts</a></li>
+            <li class="users"><a href="">Users</a></li>
+            <li class="home"><a href="">Home</a></li>
         </nav>
     </header>
 
@@ -28,5 +29,13 @@
     <script>
         console.log("INSIDE");
     </script>
+
+    <template id="post">
+        <div data-author-id class="post">
+            <p class="post-author-username"></p>
+            <p class="post-weight"></p>
+            <p class="post-content"></p>
+        </div>
+    </template>
 </body>
 </html>
