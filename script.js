@@ -43,11 +43,19 @@ $(() => {
     e.preventDefault();
     renderRegister();
   });
-  formRegister.on("submit", (e) => {
+  formRegister.on("submit", async (e) => {
     e.preventDefault();
+    const url = apiUrl + "/register";
+    const data = $(formRegister).serialize();
+    try {
+      const res = await axios.post(url, data);
+      console.log(res);
+    } catch (err) {
+      console.error(err.code, err.message);
+    }
     renderRegister();
   });
-  formLogin.on("submit", (e) => {
+  formLogin.on("submit", async (e) => {
     e.preventDefault();
     renderLogin();
   });
