@@ -1,3 +1,5 @@
+// axios.defaults.withCredentials = true;
+
 $(() => {
   /* -------------------------------------------------------------------------- */
   const apiUrl = "http://localhost:8443";
@@ -57,6 +59,14 @@ $(() => {
   });
   formLogin.on("submit", async (e) => {
     e.preventDefault();
+    const data = $(formLogin).serialize();
+    const url = apiUrl + "/login";
+    try {
+      const res = await axios.post(url, data);
+      console.log(res);
+    } catch (err) {
+      console.error(err.code, err.message);
+    }
     renderLogin();
   });
 
