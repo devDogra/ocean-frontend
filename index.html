@@ -1,46 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <script src="jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="post.css">
-
-</head>
-<body>
-    
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="post.css" />
+  </head>
+  <body>
     <header>
-        <h1>Ocean</h1>
-        <nav>
-            <li class="posts"><a href="">Posts</a></li>
-            <li class="users"><a href="">Users</a></li>
-            <li class="home"><a href="">Home</a></li>
-            <li class="register"><a href="">Register</a></li>
-            <li class="login"><a href="">Login</a></li>
-        </nav>
+      <h1>Ocean</h1>
+      <nav>
+        <li class="posts"><a href="">Posts</a></li>
+        <li class="users"><a href="">Users</a></li>
+        <li class="home"><a href="">Home</a></li>
+        <li class="register"><a href="">Register</a></li>
+        <li class="login"><a href="">Login</a></li>
+      </nav>
     </header>
 
-    <form action="#" id="register-form">
-        <input type="text" placeholder="email" name="email">
-        <input type="text" placeholder="username" name="username">
-        <input type="text" placeholder="password" name="password">
-        <button type="submit">Register</button>
-    </form>
-
-
     <main>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, fuga rem facere vel ullam voluptates veniam perspiciatis inventore iure sit velit repellat, eligendi, perferendis tempora labore nisi porro deleniti! Architecto, porro ad saepe magni nam suscipit autem deleniti laudantium nemo? Sed saepe ab dolore eveniet repellat vero qui iure consequuntur magnam quam. Ducimus mollitia tenetur doloribus quasi necessitatibus dignissimos omnis quos, deleniti beatae? Maxime exercitationem blanditiis, magnam magni voluptas fugiat mollitia nemo quas quae officiis et totam vero repudiandae, ipsum perspiciatis veniam aperiam? Obcaecati deleniti a qui fugit voluptates assumenda est, quam nisi sunt vero aliquam, nemo ex soluta deserunt.
+      <form action="#" id="register-form">
+        <input type="text" placeholder="email" name="email" />
+        <input type="text" placeholder="username" name="username" />
+        <input type="text" placeholder="password" name="password" />
+        <button type="submit">Register</button>
+      </form>
+
+      <form action="#" id="login-form">
+        <input type="text" placeholder="email" name="email" />
+        <input type="text" placeholder="password" name="password" />
+        <button type="submit">Login</button>
+      </form>
+
+      <div id="home">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores,
+        fuga rem facere vel ullam voluptates veniam perspiciatis inventore iure
+        sit velit repellat, eligendi, perferendis tempora labore nisi porro
+        deleniti! Architecto, porro ad saepe magni nam suscipit autem deleniti
+        laudantium nemo? Sed saepe ab dolore eveniet repellat vero qui iure
+        consequuntur magnam quam. Ducimus mollitia tenetur doloribus quasi
+        necessitatibus dignissimos omnis quos, deleniti beatae? Maxime
+        exercitationem blanditiis, magnam magni voluptas fugiat mollitia nemo
+        quas quae officiis et totam vero repudiandae, ipsum perspiciatis veniam
+        aperiam? Obcaecati deleniti a qui fugit voluptates assumenda est, quam
+        nisi sunt vero aliquam, nemo ex soluta deserunt.
+      </div>
+
+      <div id="users"></div>
+
+      <div id="posts"></div>
     </main>
 
     <template id="post">
-        <div data-author-id class="post">
-            <p class="post-author-username"></p>
-            <p class="post-weight"></p>
-            <p class="post-content"></p>
-        </div>
+      <div data-author-id class="post">
+        <p class="post-author-username"></p>
+        <p class="post-weight"></p>
+        <p class="post-content"></p>
+      </div>
     </template>
-</body>
+  </body>
 </html>
