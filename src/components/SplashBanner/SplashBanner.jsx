@@ -1,8 +1,10 @@
+import "./SplashBanner.css";
+
 export default function SplashBanner({ title, byline }) {
   return (
-    <div id="splash-banner">
-      <h1>{title}</h1>
-      <p>{byline}</p>
+    <div class="splash-banner">
+      <h1 class="splash-banner-title">{title}</h1>
+      <p class="splash-banner-byline">{byline}</p>
     </div>
   );
 }
