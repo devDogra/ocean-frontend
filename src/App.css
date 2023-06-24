@@ -68,14 +68,18 @@
   text-overflow: hidden;
   overflow: clip;
 }
-.post-author {
+.post-info {
   margin: 0;
   font-size: 1rem;
-  font-style: italic;
   padding-top: 1vw;
+  display: flex;
+  justify-content: space-between;
 }
-
+.post-info > * {
+  margin: 0 1vw;
+}
 .post-author::before {
+  font-style: italic;
   content: "~";
   font-weight: bolder;
 }

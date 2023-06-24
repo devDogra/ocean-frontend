@@ -30,7 +30,10 @@ function App() {
             quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
             ipsum deserunt?
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
@@ -41,7 +44,10 @@ function App() {
             quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
             ipsum deserunt?
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
@@ -57,7 +63,10 @@ function App() {
             eveniet doloribus reiciendis. Laboriosam consequuntur eligendi
             possimus libero ipsum fuga nemo quia, fugiat mollitia quas sit.
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
@@ -70,7 +79,10 @@ function App() {
             elit. Reprehenderit, aperiam. Laudantium, sint dolore cum a illum
             iusto magni nobis architecto.
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
@@ -104,7 +116,10 @@ function App() {
             excepturi temporibus voluptatum, eius, quae earum ducimus commodi
             laborum expedita.
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
@@ -115,7 +130,10 @@ function App() {
             quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
             ipsum deserunt?
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
@@ -126,7 +144,10 @@ function App() {
             quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
             ipsum deserunt?
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
@@ -139,14 +160,24 @@ function App() {
             amet consectetur adipisicing elit. Non, repellendus? accusantium
             ipsum deserunt?
           </p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
         <div className="post">
           <h3 className="post-title">
             I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">Lorem ipsum</p>
-          <p className="post-author">Author</p>
+          <div className="post-info">
+            <p className="post-author">Author</p>
+            <p className="post-weight">123</p>
+          </div>
         </div>
       </div>
 
