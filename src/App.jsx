@@ -5,16 +5,25 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
 
+  function isOverflown(element) {
+    return (
+      element.scrollHeight > element.clientHeight ||
+      element.scrollWidth > element.clientWidth
+    );
+  }
+
   return (
     <div id="app-container">
       <header id="app-header">
-        <h1 id="page-title">Ocean</h1>
+        <h1 id="app-title">
+          <span>Board</span>
+        </h1>
       </header>
 
       <div id="app-board">
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -25,7 +34,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -36,7 +45,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -52,7 +61,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -65,7 +74,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -99,7 +108,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -110,7 +119,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
@@ -121,7 +130,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">
             Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -134,7 +143,7 @@ function App() {
         </div>
         <div className="post">
           <h3 className="post-title">
-            I am gonna rope if this keeps happening
+            I am I am I am hello hello post title Hi
           </h3>
           <p className="post-content">Lorem ipsum</p>
           <p className="post-author">Author</p>
