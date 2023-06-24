@@ -1,17 +1,9 @@
-import { useState } from "react";
-import Post from "./components/Post/Post.jsx";
-import PostFilter from "./components/PostFilter/PostFilter.jsx";
-import { Route, Routes } from "react-router-dom";
-import Header from "./components/Header/Header.jsx";
-// Pages
-import Login from "./pages/login/Login.jsx";
-import Feed from "./pages/feed/Feed.jsx";
-import "./normalize.css";
+import PostFilter from "../../components/PostFilter/PostFilter";
+import Post from "../../components/Post/Post";
+import Header from "../../components/Header/Header";
+import "./Feed.css";
 
-// import "./App.css";
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function Feed() {
   const posts = [
     {
       title: "Post1",
@@ -62,22 +54,26 @@ function App() {
       weight: 123,
     },
   ];
-
-  function isOverflown(element) {
-    return (
-      element.scrollHeight > element.clientHeight ||
-      element.scrollWidth > element.clientWidth
-    );
-  }
-
   return (
-    <>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/feed" element={<Feed />} />
-      </Routes>
-    </>
+    <div id="app-container">
+      <Header />
+
+      <div id="app-board">
+        <Post {...posts[0]} />
+        <Post {...posts[1]} />
+        <Post {...posts[2]} />
+        <Post {...posts[3]} />
+        <Post {...posts[4]} />
+        <Post {...posts[5]} />
+        <Post {...posts[6]} />
+        <Post {...posts[7]} />
+        <Post {...posts[8]} />
+        <Post {...posts[9]} />
+      </div>
+
+      <div id="app-sidebar">
+        <PostFilter />
+      </div>
+    </div>
   );
 }
-
-export default App;

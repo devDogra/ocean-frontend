@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap");
+
+* {
+  /* outline: 1px solid black; */
+  font-family: "Noto Serif", serif;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --color1: #0052f2;
+  --color2: #007eff;
+  --color3: #00b1ff;
+  --color4: #40e8ff;
+  --color5: #c1ffff;
+  --color6: #e8f6f6;
+  --color7: #fbfbfbe9;
+
+  --color8: white;
+}
+/* Layout related */
+#app-container {
+  display: grid;
+  min-height: 100vh;
+  width: 100%;
+  grid-template-rows: max-content 1fr;
+  grid-template-columns: 5fr 1fr;
+  background-color: var(--color4);
+}
+
+#app-header {
+  grid-row: 1 / 2;
+  grid-column: 1 / span 2;
+}
+#app-title > span:hover {
+  cursor: pointer;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+#app-board {
+  padding: 1vw;
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+
+  display: grid;
+  gap: 1vw;
+  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+}
+
+/* --------------------------------- Sidebar -------------------------------- */
+#app-sidebar {
+  margin: 0;
+  padding: 0;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+
+  background-color: var(--color3);
+}
