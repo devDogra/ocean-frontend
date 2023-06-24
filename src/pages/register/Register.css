@@ -1,0 +1,6 @@
+#register-page {
+  display: flex;
+}
+#register-page > * {
+  flex: 1;
+}

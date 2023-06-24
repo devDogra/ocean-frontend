@@ -6,62 +6,12 @@ import Header from "./components/Header/Header.jsx";
 // Pages
 import Login from "./pages/login/Login.jsx";
 import Feed from "./pages/feed/Feed.jsx";
+import Register from "./pages/register/Register.jsx";
 import "./normalize.css";
 
 // import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
-
-  const posts = [
-    {
-      title: "Post1",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post2",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post3",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post4",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post5",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post6",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-  ];
 
   function isOverflown(element) {
     return (
@@ -75,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/feed" element={<Feed />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );

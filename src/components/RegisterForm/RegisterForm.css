@@ -1,0 +1,8 @@
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2vw;
+}
+
+/* Remaining CSS derived from ../LoginForm/LoginForm.css */
