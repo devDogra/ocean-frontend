@@ -153,7 +153,6 @@ function App() {
       <div id="app-sidebar">
         <ul id="app-sidebar-filter-container">
           <li className="app-sidebar-filter">
-            <label htmlFor="searchedPost">Search</label>
             <input
               type="text"
               id="searched-post"

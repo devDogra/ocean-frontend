@@ -28,7 +28,7 @@
   display: grid;
   min-height: 100vh;
   width: 100%;
-  grid-template-rows: 10vh 1fr;
+  grid-template-rows: max-content 1fr;
   grid-template-columns: 5fr 1fr;
   background-color: var(--color4);
 }
@@ -38,10 +38,9 @@
   grid-column: 1 / span 2;
 }
 #app-title > span:hover {
-  font-size: 110%;
   cursor: pointer;
   font-weight: bolder;
-  /* text-decoration: underline; */
+  text-decoration: underline;
 }
 #app-board {
   padding: 1vw;
