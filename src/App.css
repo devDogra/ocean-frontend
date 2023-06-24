@@ -7,12 +7,6 @@
   margin: 0;
 }
 
-#app-header {
-  background-color: var(--color1);
-  color: var(--color5);
-  padding: 0 2vw;
-}
-
 :root {
   --color1: #0052f2;
   --color2: #007eff;
@@ -24,7 +18,7 @@
 
   --color8: white;
 }
-
+/* Layout related */
 #app-container {
   display: grid;
   min-height: 100vh;
@@ -53,37 +47,6 @@
   grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
 }
 
-/* ---------------------------------- Posts --------------------------------- */
-.post {
-  padding: 0.5vw;
-  background-color: var(--color7);
-  border-radius: 0.75rem;
-}
-.post:hover {
-  box-shadow: 0px 0px 4px 4px;
-  cursor: pointer;
-}
-.post-content {
-  height: 400px;
-  text-overflow: hidden;
-  overflow: clip;
-}
-.post-info {
-  margin: 0;
-  font-size: 1rem;
-  padding-top: 1vw;
-  display: flex;
-  justify-content: space-between;
-}
-.post-info > * {
-  margin: 0 1vw;
-}
-.post-author::before {
-  font-style: italic;
-  content: "~";
-  font-weight: bolder;
-}
-
 /* --------------------------------- Sidebar -------------------------------- */
 #app-sidebar {
   margin: 0;
@@ -92,33 +55,4 @@
   grid-column: 2 / 3;
 
   background-color: var(--color3);
-}
-
-#app-sidebar-filter-container {
-  padding: 1vw;
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-}
-.app-sidebar-filter {
-  margin: 1vw 0;
-}
-
-.app-sidebar-filter > button {
-  padding: 0.25vw;
-  cursor: pointer;
-  border: none;
-  font-weight: bold;
-  background-color: var(--color7);
-}
-.app-sidebar-filter > button:hover {
-  background-color: var(--color2);
-}
-
-#searched-post::before {
-  content: "";
-  content: "a";
-}
-#searched-post {
-  padding: 0.25vw;
 }

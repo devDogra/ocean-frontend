@@ -1,0 +1,5 @@
+#app-header {
+  background-color: var(--color1);
+  color: var(--color5);
+  padding: 0 2vw;
+}

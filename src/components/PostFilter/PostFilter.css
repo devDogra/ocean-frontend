@@ -1,0 +1,28 @@
+#app-sidebar-filter-container {
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
+.app-sidebar-filter {
+  margin: 1vw 0;
+}
+
+.app-sidebar-filter > button {
+  padding: 0.25vw;
+  cursor: pointer;
+  border: none;
+  font-weight: bold;
+  background-color: var(--color7);
+}
+.app-sidebar-filter > button:hover {
+  background-color: var(--color2);
+}
+
+#searched-post::before {
+  content: "";
+  content: "a";
+}
+#searched-post {
+  padding: 0.25vw;
+}

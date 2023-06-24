@@ -1,0 +1,17 @@
+- componentize
+- mock API calls
+- login page
+
+route bw login/reg/main pages
+
+react router
+
+
+APp
+    => Main Component
+        => Post
+        => Sidebar 
+        => Header
+        => Etc
+    => Login component
+    => Reg COmponent

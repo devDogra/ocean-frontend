@@ -1,0 +1,29 @@
+.post {
+  padding: 0.5vw;
+  background-color: var(--color7);
+  border-radius: 0.75rem;
+}
+.post:hover {
+  box-shadow: 0px 0px 4px 4px;
+  cursor: pointer;
+}
+.post-content {
+  height: 400px;
+  text-overflow: hidden;
+  overflow: clip;
+}
+.post-info {
+  margin: 0;
+  font-size: 1rem;
+  padding-top: 1vw;
+  display: flex;
+  justify-content: space-between;
+}
+.post-info > * {
+  margin: 0 1vw;
+}
+.post-author::before {
+  font-style: italic;
+  content: "~";
+  font-weight: bolder;
+}
