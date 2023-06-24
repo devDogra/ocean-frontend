@@ -1,8 +1,8 @@
 import "./LoginForm.css";
+import { Link } from "react-router-dom";
 
 export default function LoginForm() {
   return (
-    // <div className="login-form-container">
     <form action="#" className="login-form">
       <div className="form-field">
         <label htmlFor="username">Username</label>
@@ -14,10 +14,8 @@ export default function LoginForm() {
       </div>
       <div className="form-buttons">
         <button type="submit">Log In</button>
-        {/* Put a router link here instead*/}
-        <a href="#">Create an account</a>
+        <Link to="/register">Create an account</Link>
       </div>
     </form>
-    // </div>
   );
 }
