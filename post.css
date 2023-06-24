@@ -1,6 +1,0 @@
-.post {
-    border: 2px solid black; 
-}
-.post > * {
-    border-bottom: 1px solid black; 
-}

@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap");
+
+* {
+  outline: 1px solid black;
+  font-family: "Noto Serif", serif;
+  padding: 0;
+  margin: 0;
+}
+
+#app-header {
+  background-color: var(--color1);
+  color: var(--color5);
+}
+
+:root {
+  --color1: #0052f2;
+  --color2: #007eff;
+  --color3: #00b1ff;
+  --color4: #40e8ff;
+  --color5: #c1ffff;
+}
+
+#app-container {
+  display: grid;
+  min-height: 100vh;
+  width: 100%;
+  grid-template-rows: 10vh 1fr;
+  grid-template-columns: 5fr 1fr;
+}
+
+#app-header {
+  grid-row: 1 / 2;
+  grid-column: 1 / span 2;
+}
+#app-board {
+  padding: 1vw;
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+
+  display: grid;
+  gap: 1vw;
+  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+}
+#app-sidebar {
+  /* padding: 1.25vw; */
+  margin: 0;
+  padding: 0;
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+#app-sidebar-filter-container {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+}
