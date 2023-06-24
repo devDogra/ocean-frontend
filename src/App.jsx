@@ -188,7 +188,7 @@ function App() {
               type="text"
               id="searched-post"
               name="searchedPost"
-              placeholder="🔎"
+              placeholder="🔎 Search"
             />
           </li>
 
