@@ -154,7 +154,12 @@ function App() {
         <ul id="app-sidebar-filter-container">
           <li className="app-sidebar-filter">
             <label htmlFor="searchedPost">Search</label>
-            <input type="text" id="searchedPost" name="searchedPost" />
+            <input
+              type="text"
+              id="searched-post"
+              name="searchedPost"
+              placeholder="🔎"
+            />
           </li>
 
           <li className="app-sidebar-filter">
