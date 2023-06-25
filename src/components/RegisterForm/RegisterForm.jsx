@@ -1,9 +1,21 @@
 import "./RegisterForm.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import { apiURL } from "../../fakeEnvVars";
 
 export default function RegisterForm() {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    const formDataJson = Object.fromEntries(formData.entries());
+
+    const response = await axios.post(apiURL + "/register", formDataJson);
+    console.log(response);
+  }
   return (
-    <form action="#" className="register-form">
+    <form action="#" className="register-form" onSubmit={handleSubmit}>
       <div className="form-field">
         <label htmlFor="username">Username</label>
         <input type="text" id="username" name="username" />
