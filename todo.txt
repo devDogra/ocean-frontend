@@ -7,7 +7,12 @@ route bw login/reg/main pages
 react router
 
 
-create account via /register (frontend); 
+[x] create account via /register (frontend);  
+[ ] login via /login (frontend), verify the obtainence of a token, 
+[ ] store it in local storage, 
+[ ] send it with subsequent requests
+[ ] check whether routes are protected from frontend, if not logged in redirect to login/ with a special message being displayed 
+[ ] load all the posts in /feed from the API first 
 
 APp
     => Main Component
