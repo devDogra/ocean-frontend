@@ -1,15 +1,23 @@
 import "./LoginForm.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { apiURL } from "../../fakeEnvVars";
+import { apiURL, LOCAL_STORAGE_JWT_KEY } from "../../fakeEnvVars";
 
 export default function LoginForm({ handleLogin }) {
   async function handleLogin(event) {
     event.preventDefault();
     const formDataJson = getFormJSONData(event.target);
     try {
-      const response = await axios.post(apiURL + "/login", formDataJson);
-      console.log(response);
+      const {
+        data: { message, token, error },
+      } = await axios.post(apiURL + "/login", formDataJson);
+
+      if (error) return alert(error);
+
+      // Else Login Succesful
+      localStorage.setItem(LOCAL_STORAGE_JWT_KEY, token);
+
+      console.log(token);
     } catch (err) {
       const responseData = err.response.data;
       alert(responseData.error);
