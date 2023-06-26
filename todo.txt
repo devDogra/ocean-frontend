@@ -11,6 +11,8 @@ react router
 [x] login via /login (frontend), verify the obtainence of a token, 
 [x] store it in local storage, 
 [ ] send it with subsequent requests (from /feed, POST /posts)
+    populate the posts before sending them (API) so we actually get the author details too 
+    post titles not available
 [ ] check whether routes are protected from frontend, if not logged in redirect to login/ with a special message being displayed 
 [ ] load all the posts in /feed from the API first 
 
