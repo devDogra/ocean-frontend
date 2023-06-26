@@ -8,9 +8,9 @@ react router
 
 
 [x] create account via /register (frontend);  
-[ ] login via /login (frontend), verify the obtainence of a token, 
-[ ] store it in local storage, 
-[ ] send it with subsequent requests
+[x] login via /login (frontend), verify the obtainence of a token, 
+[x] store it in local storage, 
+[ ] send it with subsequent requests (from /feed, POST /posts)
 [ ] check whether routes are protected from frontend, if not logged in redirect to login/ with a special message being displayed 
 [ ] load all the posts in /feed from the API first 
 

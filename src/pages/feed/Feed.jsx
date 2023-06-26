@@ -4,9 +4,31 @@ import Header from "../../components/Header/Header";
 import "./Feed.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { apiURL } from "../../fakeEnvVars";
+import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
 
 export default function Feed() {
+  const [posts, setPosts] = useState();
+  useEffect(() => {
+    (async () => {
+      const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
+
+      const config = {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      };
+
+      try {
+        const fetchedPosts = await axios.get(apiURL + "/posts", config);
+        console.log(fetchedPosts);
+        // setState(posts)
+      } catch (err) {
+        console.log(err.statusCode);
+        console.log(err.message);
+      }
+    })();
+  }, []);
+
   const sampleposts = [
     {
       title: "Post1",
@@ -57,20 +79,6 @@ export default function Feed() {
       weight: 123,
     },
   ];
-  // const [posts, setPosts] = useState();
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const fetchedPosts = await axios.get(apiURL + "/posts");
-  //       console.log(fetchedPosts);
-  //       console.log;
-  //       // setState(posts)
-  //     } catch (err) {
-  //       console.log(err.statusCode);
-  //       console.log(err.message);
-  //     }
-  //   })();
-  // }, []);
   return (
     <div id="app-container">
       <Header />
