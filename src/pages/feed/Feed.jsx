@@ -7,7 +7,7 @@ import axios from "axios";
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
 
 export default function Feed() {
-  const [posts, setPosts] = useState();
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
@@ -19,9 +19,12 @@ export default function Feed() {
       };
 
       try {
-        const fetchedPosts = await axios.get(apiURL + "/posts", config);
+        const { data: fetchedPosts } = await axios.get(
+          apiURL + "/posts",
+          config
+        );
         console.log(fetchedPosts);
-        // setState(posts)
+        setPosts(fetchedPosts);
       } catch (err) {
         console.log(err.statusCode);
         console.log(err.message);
@@ -29,71 +32,14 @@ export default function Feed() {
     })();
   }, []);
 
-  const sampleposts = [
-    {
-      title: "Post1",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post2",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post3",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post4",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post5",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-    {
-      title: "Post6",
-      content: `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-      quis distinctio cupiditate nam ipsam ducimus eius, sint accusantium
-      ipsum deserunt?`,
-      author: "Author",
-      weight: 123,
-    },
-  ];
   return (
     <div id="app-container">
       <Header />
 
       <div id="app-board">
-        <Post {...sampleposts[0]} />
-        <Post {...sampleposts[1]} />
-        <Post {...sampleposts[2]} />
-        <Post {...sampleposts[3]} />
-        <Post {...sampleposts[4]} />
-        <Post {...sampleposts[5]} />
-        <Post {...sampleposts[6]} />
-        <Post {...sampleposts[7]} />
-        <Post {...sampleposts[8]} />
-        <Post {...sampleposts[9]} />
+        {posts.map((post, index) => {
+          return <Post key={index} {...post} />;
+        })}
       </div>
 
       <div id="app-sidebar">
