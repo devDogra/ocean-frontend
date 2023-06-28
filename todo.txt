@@ -68,3 +68,6 @@ APp
         => Etc
     => Login component
     => Reg COmponent
+
+[ ] add ability to create posts from frontend 
+[ ] finish profile page 

@@ -4,6 +4,7 @@ import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import axios from "axios";
 // Needed because JWT is stored in its Base64 encoded form, as
 // [HEADER | PAYLOAD (USRID) | SIGN ]
+import "./Profile.css";
 import jwtDecode from "jwt-decode";
 
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
