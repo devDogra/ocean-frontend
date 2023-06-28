@@ -10,11 +10,53 @@ react router
 [x] create account via /register (frontend);  
 [x] login via /login (frontend), verify the obtainence of a token, 
 [x] store it in local storage, 
-[ ] send it with subsequent requests (from /feed, POST /posts)
-    populate the posts before sending them (API) so we actually get the author details too 
-    post titles not available
+[x] send it with subsequent requests (from /feed, POST /posts)
+    [x]populate the posts before sending them (API) so we actually get the author details too 
+    [x]post titles not available
+[x] load all the posts in /feed from the API first 
+
 [ ] check whether routes are protected from frontend, if not logged in redirect to login/ with a special message being displayed 
-[ ] load all the posts in /feed from the API first 
+[ ] verify no token means no feed => redirect to login pg with a notif
+[ ] ability to delete posts, but author "Dev" can only create posts with his author (type ObjectId) hmmmmm.....
+    [] if i just implement this on the frontend by getting the user info from the current JWT, and then using that to 'fix' some 
+        of the fields in the post object and only allowing the usr to fill the title and content, and then send it to the API, 
+        its just a frontend solution, and could still be bypassed via POSTMAN or whatever
+
+        so I need to add Authorization (not exactly authorization cuz not really any "roles" yet, but ill certainly add "admin" and "mod" roles to 
+        delete EVERYONES posts not just theirs, later) to the API/backend, so that #1 after the JWT verification I know the id of the user who
+        made that req, and only allow the POST request to go through if the post obj data's author id matches that said by the jwt
+
+        cuz rn any authenticated user can create a post with any author field value(type ObjectId)
+
+        POST /posts => A usr can only create posts with id the same as his 
+        GET /users/:userId => A usr can only get user info with id the same as his 
+        GET /users => A normal user cannot get this (for now) (restricted to admin role later)
+        GET /posts => All users can get all posts (for now, might add friends-only posts later) 
+
+
+[ ] ability to create posts
+[x] Allow users to only GET/modify their own user instances
+[x] hash stored passwords, and login verif 
+------ when usr gets his info, he gets the hashed password. shoudl this be the case? if not, then i should be changing all the GET 
+user methods to return the ACTUAL pwd right? 
+
+[x] Change GET /posts and /posts/:postId to exclude the email and password fields from the returned post's author
+
+---- also reminds me, when getting POSTS, isnt that post's authors' user details populated, defeating the whole purpose of this? 
+so shouldnt i just return the author Id when getting the posts? or better yet, manually just populate select fields (username,but not email 
+or pwd or user id (since that would be risky cuz allow db queries for that id??? DUNNO, already can query for username and get the id.. idk)) 
+
+
+-------------- now the only allow users to create posts in their own name + modify their own posts thing is done + tested ----
+next is first clean up the API code cuz its making TWO DB calls in posts.js some of it when it could just work with one 
+---- but that's an optimisation issue right???? 
+
+----- extract permissions (canDoX etc) into their own files ------ 
+--------also, pwds still stored raw strings --------------
+
+
+------ posts.js stuff is done, now make it so an authenticated user can only get his own details 
+
 
 APp
     => Main Component
