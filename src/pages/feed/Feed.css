@@ -32,11 +32,7 @@
   grid-row: 1 / 2;
   grid-column: 1 / span 2;
 }
-#app-title > span:hover {
-  cursor: pointer;
-  font-weight: bolder;
-  text-decoration: underline;
-}
+
 #app-board {
   padding: 1vw;
   grid-row: 2 / 3;

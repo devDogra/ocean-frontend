@@ -1,5 +1,45 @@
 #app-header {
   background-color: var(--color1);
   color: var(--color5);
-  padding: 0 2vw;
+  padding: .5vw 2vw;
+  display: flex; 
+  justify-content: space-between;
+  
+}
+#app-header * {
+  /* border: 1px solid;  */
+}
+#app-navbar {
+  display: flex; 
+  align-items: stretch;
+}
+#app-navbar-links {
+  list-style-type: none; 
+  display: flex; 
+  flex-direction: row;
+}
+.app-navbar-link {
+  display: flex; 
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 .2vw; 
+
+  background-color: var(--color2);
+  border-radius: .75rem;
+  border: 1px solid var(--color3); 
+  font-weight: bold;
+}
+.app-navbar-link a {
+  padding: 1vw; 
+  text-decoration: none;
+}
+.app-navbar-link:hover {
+  text-decoration: underline;
+  background-color: var(--color3);
+}
+
+#app-title > span:hover {
+  cursor: pointer;
+  font-weight: bolder;
+  text-decoration: underline;
 }
