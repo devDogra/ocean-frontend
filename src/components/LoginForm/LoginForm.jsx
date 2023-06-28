@@ -1,9 +1,11 @@
 import "./LoginForm.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { apiURL, LOCAL_STORAGE_JWT_KEY } from "../../fakeEnvVars";
 
 export default function LoginForm({ handleLogin }) {
+  const navigate = useNavigate();
+
   async function handleLogin(event) {
     event.preventDefault();
     const formDataJson = getFormJSONData(event.target);
@@ -16,8 +18,8 @@ export default function LoginForm({ handleLogin }) {
 
       // Else Login Succesful
       localStorage.setItem(LOCAL_STORAGE_JWT_KEY, token);
-
       console.log(token);
+      navigate('/feed'); 
     } catch (err) {
       const responseData = err.response.data;
       alert(responseData.error);
