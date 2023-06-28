@@ -8,6 +8,7 @@ import Login from "./pages/login/Login.jsx";
 import Feed from "./pages/feed/Feed.jsx";
 import Register from "./pages/register/Register.jsx";
 import Profile from "./pages/profile/Profile.jsx";
+import NewPost from "./pages/new-post/NewPost.jsx";
 import "./normalize.css";
 
 // import "./App.css";
@@ -28,7 +29,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<Profile /> } />
+        <Route path="/new-post" element={ <NewPost /> }/>
       </Routes>
     </>
   );

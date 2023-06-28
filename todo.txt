@@ -70,4 +70,4 @@ APp
     => Reg COmponent
 
 [ ] add ability to create posts from frontend 
-[ ] finish profile page 
+[x] finish profile page and linkage 

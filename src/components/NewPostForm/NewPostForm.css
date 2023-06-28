@@ -1,0 +1,19 @@
+/* Derives CSS from LoginForm.css */
+#new-post-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2vw;
+  }
+
+#new-post-form button[type="submit"]{
+    border-radius: .75rem;
+    padding: .25vw; 
+    font-size: 150%; 
+    background-color: var(--color3); 
+}
+#new-post-form button[type="submit"]:hover {
+    background-color: var(--color4);
+    cursor: pointer;
+}
+  
