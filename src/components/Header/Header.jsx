@@ -10,7 +10,7 @@ export default function Header() {
       <nav id="app-navbar">
         <ul id="app-navbar-links">
           <li className="app-navbar-link"><Link>Dummy</Link></li>
-          <li className="app-navbar-link"><Link>Dummy</Link></li>
+          <li className="app-navbar-link"><Link to="/new-post">Create Post</Link></li>
           <li className="app-navbar-link"><Link to="/profile">Profile</Link></li>
         </ul>
       </nav>
