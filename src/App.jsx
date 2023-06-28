@@ -7,6 +7,7 @@ import Header from "./components/Header/Header.jsx";
 import Login from "./pages/login/Login.jsx";
 import Feed from "./pages/feed/Feed.jsx";
 import Register from "./pages/register/Register.jsx";
+import Profile from "./pages/profile/Profile.jsx";
 import "./normalize.css";
 
 // import "./App.css";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

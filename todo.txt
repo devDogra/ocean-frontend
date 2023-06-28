@@ -46,7 +46,8 @@ user methods to return the ACTUAL pwd right?
 so shouldnt i just return the author Id when getting the posts? or better yet, manually just populate select fields (username,but not email 
 or pwd or user id (since that would be risky cuz allow db queries for that id??? DUNNO, already can query for username and get the id.. idk)) 
 
-
+** no need to return actual pwd, cuz security risk if someone peeks 
+the profile ** 
 -------------- now the only allow users to create posts in their own name + modify their own posts thing is done + tested ----
 next is first clean up the API code cuz its making TWO DB calls in posts.js some of it when it could just work with one 
 ---- but that's an optimisation issue right???? 
@@ -57,6 +58,7 @@ next is first clean up the API code cuz its making TWO DB calls in posts.js some
 
 ------ posts.js stuff is done, now make it so an authenticated user can only get his own details 
 
+POST /
 
 APp
     => Main Component

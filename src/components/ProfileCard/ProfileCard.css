@@ -1,0 +1,11 @@
+.profile-card > .info-container {
+    display: flex; 
+    flex-direction: column;
+}
+.profile-card .info {
+    display: flex; 
+    justify-content: stretch;
+}
+.profile-card .info-key {
+    font-weight: bold;
+}
