@@ -1,6 +1,7 @@
+import LogoutButton from "../LogoutButton/LogoutButton";
 import "./ProfileCard.css";
 
-export default function ProfileCard({username, email}) {
+export default function ProfileCard({username, email, handleLogout}) {
     return (
         <div className="profile-card">
             <h3 className="heading">{username}'s profile</h3>
@@ -14,6 +15,7 @@ export default function ProfileCard({username, email}) {
                     <span className="info-val">{username}</span>
                 </div>
             </div>
+            <LogoutButton />
         </div>
     );
 }
