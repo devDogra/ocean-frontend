@@ -1,4 +1,6 @@
-- Logout
+- Logout @done
+- remove redundant code from api (duplicate db calls)
+- set up REAL .dotenv env vars 
 - Up/downvoting
 - Post char limits + Post char display limit & ... if exceed
 - Post click expand
