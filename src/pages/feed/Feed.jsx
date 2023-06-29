@@ -5,19 +5,14 @@ import "./Feed.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
+import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
 
 export default function Feed() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
-
-      const config = {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      };
-
+      const config = getAxiosRequestConfig(token);
       try {
         const { data: fetchedPosts } = await axios.get(
           apiURL + "/posts",

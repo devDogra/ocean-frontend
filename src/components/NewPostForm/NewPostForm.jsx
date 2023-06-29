@@ -3,25 +3,22 @@ import { LOCAL_STORAGE_JWT_KEY } from "../../fakeEnvVars";
 import jwtDecode from "jwt-decode";
 import "./NewPostForm.css";
 import axios from "axios";
+import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
+import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
+import getFormJSONData from "../../utils/functions/getFormJSONData";
 
 export default function NewPostForm() {
     async function handleSubmit(event) {
         event.preventDefault(); 
-        let form = event.target; 
-        let formDataJson = getFormJSONData(form); 
 
         const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
-        const decodedToken = jwtDecode(token);
-        const loggedInUserId = decodedToken.sub;
+        const loggedInUserId = getLoggedInUserIdFromJWT(token);
+        const config = getAxiosRequestConfig(token);
 
-            
-        const config = {
-            headers: {
-                Authorization: "Bearer " + token,
-            },
-        };
-
+        let form = event.target; 
+        let formDataJson = getFormJSONData(form); 
         formDataJson.author = loggedInUserId; 
+
         try {
             await axios.post(apiURL + '/posts', formDataJson, config);
             alert("Post created"); 
@@ -30,11 +27,6 @@ export default function NewPostForm() {
         }
     }
 
-    function getFormJSONData(form) {
-        const formData = new FormData(form);
-        const formDataJson = Object.fromEntries(formData.entries());
-        return formDataJson;
-      }
     return (
         <form id="new-post-form" action="#"  onSubmit={handleSubmit}>
             

@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import axios from "axios";
-// Needed because JWT is stored in its Base64 encoded form, as
-// [HEADER | PAYLOAD (USRID) | SIGN ]
 import "./Profile.css";
 import jwtDecode from "jwt-decode";
+import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
+import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
 
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
 
@@ -15,21 +15,15 @@ export default function Profile() {
 
     useEffect(() => {
         async function main() {
-            const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
-            const decodedToken = jwtDecode(token);
-            const loggedInUserId = decodedToken.sub;
-            console.log(loggedInUserId);
+            const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY)
+
+            const loggedInUserId = getLoggedInUserIdFromJWT(token);
 
             // Make sure to ALWAYS send this with every req from the client
-            const config = {
-                headers: {
-                  Authorization: "Bearer " + token,
-                },
-              };
+            const config = getAxiosRequestConfig(token);
         
             try {
                 const {data: loggedInUser} = await axios.get(apiURL + '/users' + '/' + loggedInUserId, config);
-                console.log(loggedInUser);
 
                 setEmail(loggedInUser.email);
                 setUsername(loggedInUser.username);
