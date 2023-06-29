@@ -71,3 +71,5 @@ APp
 
 [ ] add ability to create posts from frontend 
 [x] finish profile page and linkage 
+[ ] could just delete the ensure can create post... write? OR WRONG. THE API nnees to be a self contained app,
+so it should not have knowledge of what input is going to be sent 
