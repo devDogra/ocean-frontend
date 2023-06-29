@@ -6,10 +6,13 @@ import "./Profile.css";
 import jwtDecode from "jwt-decode";
 import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
 import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
-
+import redirectIfNotLoggedIn from "../../utils/functions/redirectIfNotLoggedIn";
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
+import useRedirectIfNotLoggedIn from "../../utils/functions/redirectIfNotLoggedIn";
 
 export default function Profile() {
+    useRedirectIfNotLoggedIn()
+
     const [email, setEmail] = useState();
     const [username, setUsername] = useState();
 

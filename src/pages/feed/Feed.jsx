@@ -6,9 +6,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
 import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
+import useRedirectIfNotLoggedIn from "../../utils/functions/redirectIfNotLoggedIn";
+
 
 export default function Feed() {
+  useRedirectIfNotLoggedIn();
+
   const [posts, setPosts] = useState([]);
+
   useEffect(() => {
     (async () => {
       const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
