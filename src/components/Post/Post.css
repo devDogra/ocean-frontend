@@ -27,3 +27,17 @@
   content: "~";
   font-weight: bolder;
 }
+.post-weight-controls {
+  display: flex; 
+}
+.post-vote-btn {
+  font-size: 155%; 
+  font-weight: bolder;
+  cursor: pointer;
+  border: none; 
+  padding: 0; 
+}
+.post-vote-btn:hover {
+  background-color: var(--color3);
+  /* outline: 2px solid black;  */
+}
