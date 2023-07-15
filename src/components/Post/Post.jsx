@@ -5,7 +5,7 @@ import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
 import { useEffect, useState } from "react";
 
 export default function Post(props) {
-  const {_id, author} = props;
+  const {_id, author, currentUserVote} = props;
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
   const [weight, setWeight] = useState(props.weight);
@@ -14,7 +14,9 @@ export default function Post(props) {
   useEffect(() => {
     // Get what the currently logged in user's vote is on this post
     // const url = `${apiURL}/votes`
-    console.log(props); 
+    console.log(props);
+    console.log({currentUserVote}); 
+    setUserVote(currentUserVote?.value);
 
   }, [])
 
@@ -39,15 +41,22 @@ export default function Post(props) {
     await handleVote(event, -1);
   }
   return (
-    <div className="post" data-post-id={_id} data-author-id={author?._id}>
+    <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote }>
       <h3 className="post-title">{title || "--  No Title -- "}</h3>
       <p className="post-content">{content}</p>
       <div className="post-info">
         <p className="post-author">{author?.username || "unknown"}</p>
         <div className="post-weight-controls">
-          <button onClick={ handleUpvote } className="post-vote-btn">⬆️</button>
+          <button 
+          onClick={ handleUpvote } 
+          data-clicked={ userVote == 1 ? true : false }className="post-vote-btn">⬆️</button>
+
           <p className="post-weight">{weight || "unknown"}</p>
-          <button onClick={ handleDownvote } className="post-vote-btn">⬇️</button>
+
+          <button 
+          data-clicked={ userVote == -1 ? true : false }
+          onClick={ handleDownvote } 
+          className="post-vote-btn">⬇️</button>
         </div>
 
       </div>
