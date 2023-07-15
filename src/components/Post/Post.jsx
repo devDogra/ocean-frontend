@@ -10,31 +10,24 @@ export default function Post(props) {
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
   const [weight, setWeight] = useState(props.weight);
-  const [userVote, setUserVote] = useState(0);
+  const [userVote, setUserVote] = useState();
 
   useEffect(() => {
     // Get what the currently logged in user's vote is on this post
     // const url = `${apiURL}/votes`
     console.log(props);
     console.log({currentUserVote}); 
-    setUserVote(currentUserVote?.value);
+    console.log({...currentUserVote}); 
+    setUserVote({...currentUserVote });
+    console.log("----init----"); 
+    console.log(userVote); 
 
   }, [])
 
-  async function handleVote(event, change) {
-    const url = `${apiURL}`
-    const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
-    const config = getAxiosRequestConfig(token);
-    // try {
-    //   const response = await axios.patch(url, {weight: weight + change}, config);
-    //   const { data: { message, updatedPost } } = response;
-    //   setWeight(updatedPost.weight);
-    // } catch(err) {
-    //   alert("Error voting"); 
-    //   console.log(err); 
-    //   return;
-    // }
+  function noUserVote() {
+    return Object.keys(userVote).length === 0; 
   }
+
   async function handleUpvote(event) {
     await handleVote(event, +1);
   }
@@ -50,41 +43,65 @@ export default function Post(props) {
     const loggedInUserId = getLoggedInUserIdFromJWT(token);
     const config = getAxiosRequestConfig(token);
 
-    if (userVote == -value) {
-      // Switch vote if user's vote is currently opposite of the value we clicked on
+    if (noUserVote()) {
+      // Do up/downnvote
+      console.log("CREATING VOTE"); 
+      const vote = { user: loggedInUserId, post: _id, value};
+      console.log(vote);
+
       try {
-        console.log(apiURL + "/votes/" + currentUserVote._id); 
+        console.log(apiURL + "/votes"); 
+        console.log(vote); 
+        const res = await axios.post(apiURL + "/votes", vote, config);
+        const createdVote = res.data.vote; 
+        // console.log(res); 
+        // console.log({createdVote}); 
+        // console.log(res.data.vote); 
+        setUserVote(userVote => ({...createdVote}));
+        console.log({userVote}); 
+      } catch(err) {
+        console.log(err.message); 
+        alert("Error voting"); 
+        return; 
+      }
+    }
+    else if (userVote?.value == -value) {
+      // Switch vote if user's vote is currently opposite of the value we clicked on
+      console.log("TRYNA SWITCH"); 
+      console.log({userVote});
+      try {
+        console.log(apiURL + "/votes/" + userVote?._id); 
         console.log({value}); 
-        const res =  await axios.put(apiURL + "/votes/" + currentUserVote._id, { value }, config);
+        const res =  await axios.put(apiURL + "/votes/" + userVote._id, { value }, config);
         console.log(res);
-        setUserVote(value);
+        // setUserVote({...userVote, value});
+        setUserVote(userVote => ({...userVote, value}));
+        console.log({userVote}); 
+
+
       } catch(err) {
         alert("Error voting"); 
         return; 
       }
     } 
-    else if (userVote == value) {
+    else if (userVote?.value == value) {
       // Remove vote
       console.log("TRYNA REMOVE"); 
       // API DELETE DOES NOT EXIST YET
-    }
-    else {
-      // Do up/downnvote
-      const vote = { user: loggedInUserId, post: _id, value};
+      const res = await axios.delete(apiURL + "/votes/" + userVote._id, config);
+      console.log(res); 
+      // Because 0 => No vote on this post 
+      // setUserVote(undefined); 
+      setUserVote(userVote => ({}));
+      console.log({userVote}); 
 
-      try {
-        const res = await axios.post(apiURL + "/votes", vote, config);
-        console.log(res); 
-        setUserVote(value);
-      } catch(err) {
-        alert("Error voting"); 
-        return; 
-      }
+
     }
+
   }
  
   return (
-    <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote }>
+    <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote?._id }>
       <h3 className="post-title">{title || "--  No Title -- "}</h3>
       <p className="post-content">{content}</p>
       <div className="post-info">
@@ -92,12 +109,12 @@ export default function Post(props) {
         <div className="post-weight-controls">
           <button 
           onClick={ handleUpvote } 
-          data-clicked={ userVote == 1 ? true : false }className="post-vote-btn">⬆️</button>
+          data-clicked={ userVote?.value == 1 ? true : false }className="post-vote-btn">⬆️</button>
 
           <p className="post-weight">{weight || "unknown"}</p>
 
           <button 
-          data-clicked={ userVote == -1 ? true : false }
+          data-clicked={ userVote?.value == -1 ? true : false }
           onClick={ handleDownvote } 
           className="post-vote-btn">⬇️</button>
         </div>
