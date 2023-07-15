@@ -3,6 +3,7 @@ import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
 import axios from "axios";
 import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
 import { useEffect, useState } from "react";
+import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
 
 export default function Post(props) {
   const {_id, author, currentUserVote} = props;
@@ -35,10 +36,42 @@ export default function Post(props) {
     // }
   }
   async function handleUpvote(event) {
-    await handleVote(event, +1);
+    // await handleVote(event, +1);
   }
   async function handleDownvote(event) {
-    await handleVote(event, -1);
+
+    const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
+    const loggedInUserId = getLoggedInUserIdFromJWT(token);
+    const config = getAxiosRequestConfig(token);
+
+    if (userVote == 1) {
+      // Switch upvote to downvote
+      try {
+        const res =  await axios.put(apiURL + "/votes/" + currentUserVote._id, { value: -1 }, config);
+        console.log(res);
+        setUserVote(-1);
+      } catch(err) {
+        alert("Error downvoting"); 
+        return; 
+      }
+    } 
+    else if (userVote == -1) {
+      // Remove downvote
+      // API DELETE DOES NOT EXIST YET
+    }
+    else {
+      // Do downvote
+      const vote = { user: loggedInUserId, post: _id, value: -1};
+
+      try {
+        const res = await axios.post(apiURL + "/votes", vote, config);
+        console.log(res); 
+        setUserVote(-1);
+      } catch(err) {
+        alert("Error downvoting"); 
+        return; 
+      }
+    }
   }
   return (
     <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote }>
