@@ -2,6 +2,29 @@
 - remove redundant code from api (duplicate db calls)
 - set up REAL .dotenv env vars 
 - Up/downvoting
+    - each user has his own upvotes[], downvotes[] arr in the User model
+    - upvoting adds that post id in the upvotes[] array (PATCH weight++
+    - on upvoting if already in array, then remove it from the array
+- Up/downvoting v2
+    - Vote: { user(id), post(id), value(enum[1,0-1]) }@done
+    - Vote: (user, post) unique together @done
+    - Actually.... if the value is 0, then there is no vote, so why am I even storing the vote?@done .... or should I? Cuz what if vote=>unvote=>vote, wouldn't it be better to have the vote already exist to save time? IDK, let's just keep it this way for now
+    - PUT vote + only updates value field @done 
+    - Make Post weight and Vote in sync by turning 'weight' of Post into [Schema.Types.ObjectId], ref: Vote (NO, just [Vote]@done
+    - Now whenever a Vote is created, that VOst's post(id) is used to get the post that the vote is supposed to be on  and then the vote is added to the votes[] array of tht Post 
+    - And whenever a Vote is updated, that vote's post id is used to get the post that vote is associated with and that is used to then find the vote in the array in that post's votes array and then update it 
+    - 
+    - PATCH identifcal to PUT@done
+    - EVENTUALLY: friends would be able to see a user's Votes
+    - for now: no one can see anyone's votes.... right?  
+        - But a user can see his own votes 
+        - so ensure a user is autheticated, then ensure that he is trying to get his own votes /votes?user=<userId>
+    - On UNvoting, I will send a delete request
+    - delete, patch, put, get individual, get all 
+    - restrictions on the aboves
+    - PUT and PATCH have the same function as the MW
+    - The ensureCanGetVote and ensureCanUpdateVote perms are basically the same
+    - The method I used to reduce DB calls from 2 to 1 can be applied to users.js and posts.js too!
 - Post char limits + Post char display limit & ... if exceed
 - Post click expand
 - Leaderboard (who has the most points)

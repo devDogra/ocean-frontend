@@ -15,6 +15,7 @@ export default function Feed() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
+    // Load all posts
     (async () => {
       const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
       const config = getAxiosRequestConfig(token);
@@ -26,6 +27,20 @@ export default function Feed() {
         console.log(fetchedPosts);
         setPosts(fetchedPosts);
       } catch (err) {
+        console.log(err.statusCode);
+        console.log(err.message);
+      }
+    })();
+
+    // Load all votes of a user
+    (async () => {
+      const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
+      const config = getAxiosRequestConfig(token);
+      try {
+        // GET /votes by default gets a user his own votes
+        const { data: currentUserVotes } = await axios.get(apiURL + "/votes", config);
+        console.log(currentUserVotes) ; 
+      } catch(err) {
         console.log(err.statusCode);
         console.log(err.message);
       }
