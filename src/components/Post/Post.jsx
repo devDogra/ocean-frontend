@@ -36,43 +36,53 @@ export default function Post(props) {
     // }
   }
   async function handleUpvote(event) {
-    // await handleVote(event, +1);
+    await handleVote(event, +1);
   }
-  async function handleDownvote(event) {
 
+  async function handleDownvote(event) {
+    await handleVote(event, -1); 
+  }
+
+  async function handleVote(event, value) {
+    console.log({userVote}); 
+    alert("HI"); 
     const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
     const loggedInUserId = getLoggedInUserIdFromJWT(token);
     const config = getAxiosRequestConfig(token);
 
-    if (userVote == 1) {
-      // Switch upvote to downvote
+    if (userVote == -value) {
+      // Switch vote if user's vote is currently opposite of the value we clicked on
       try {
-        const res =  await axios.put(apiURL + "/votes/" + currentUserVote._id, { value: -1 }, config);
+        console.log(apiURL + "/votes/" + currentUserVote._id); 
+        console.log({value}); 
+        const res =  await axios.put(apiURL + "/votes/" + currentUserVote._id, { value }, config);
         console.log(res);
-        setUserVote(-1);
+        setUserVote(value);
       } catch(err) {
-        alert("Error downvoting"); 
+        alert("Error voting"); 
         return; 
       }
     } 
-    else if (userVote == -1) {
-      // Remove downvote
+    else if (userVote == value) {
+      // Remove vote
+      console.log("TRYNA REMOVE"); 
       // API DELETE DOES NOT EXIST YET
     }
     else {
-      // Do downvote
-      const vote = { user: loggedInUserId, post: _id, value: -1};
+      // Do up/downnvote
+      const vote = { user: loggedInUserId, post: _id, value};
 
       try {
         const res = await axios.post(apiURL + "/votes", vote, config);
         console.log(res); 
-        setUserVote(-1);
+        setUserVote(value);
       } catch(err) {
-        alert("Error downvoting"); 
+        alert("Error voting"); 
         return; 
       }
     }
   }
+ 
   return (
     <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote }>
       <h3 className="post-title">{title || "--  No Title -- "}</h3>
