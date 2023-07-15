@@ -13,6 +13,7 @@ export default function Feed() {
   useRedirectIfNotLoggedIn();
 
   const [posts, setPosts] = useState([]);
+  const [postIdToVoteMap, setPostIdToVoteMap] = useState(new Map());
 
   useEffect(() => {
     // Load all posts
@@ -32,7 +33,7 @@ export default function Feed() {
       }
     })();
 
-    // Load all votes of a user
+    // Load all votes of a user and map: postid => vote, so we can for every post pass the user's vote associated with that post (if it exists) to the post component
     (async () => {
       const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
       const config = getAxiosRequestConfig(token);
@@ -40,6 +41,13 @@ export default function Feed() {
         // GET /votes by default gets a user his own votes
         const { data: currentUserVotes } = await axios.get(apiURL + "/votes", config);
         console.log(currentUserVotes) ; 
+
+        const tempMap = new Map();
+        currentUserVotes.forEach(vote => {
+          tempMap.set(vote.post, vote);
+        })
+        console.log(tempMap); 
+        setPostIdToVoteMap(new Map(tempMap));
       } catch(err) {
         console.log(err.statusCode);
         console.log(err.message);
@@ -53,7 +61,9 @@ export default function Feed() {
 
       <div id="app-board">
         {posts.map((post, index) => {
-          return <Post key={index} {...post} />;
+          const currentUserVote = postIdToVoteMap.get(post._id);
+          const postProps = {...post, currentUserVote}
+          return <Post key={index} {...postProps} />;
         })}
       </div>
 
