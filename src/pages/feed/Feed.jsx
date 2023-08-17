@@ -25,7 +25,7 @@ export default function Feed() {
           apiURL + "/posts",
           config
         );
-        console.log(fetchedPosts);
+        console.log({fetchedPosts});
         setPosts(fetchedPosts);
       } catch (err) {
         console.log(err.statusCode);
@@ -62,8 +62,13 @@ export default function Feed() {
       <div id="app-board">
         {posts.map((post, index) => {
           const currentUserVote = postIdToVoteMap.get(post._id);
-          const postProps = {...post, currentUserVote}
-          return <Post key={index} {...postProps} />;
+          const postProps = {
+            ...post, 
+            currentUserVote, 
+            weight: post.upvoteCount - post.downvoteCount
+          }
+          {console.log(postProps)}
+          return <Post key={index} {...postProps}  />;
         })}
       </div>
 

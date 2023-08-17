@@ -54,9 +54,12 @@ export default function Post(props) {
         console.log(vote); 
         const res = await axios.post(apiURL + "/votes", vote, config);
         const createdVote = res.data.vote; 
+
         // console.log(res); 
         // console.log({createdVote}); 
         // console.log(res.data.vote); 
+        setWeight(weight => weight + userVote.value); 
+
         setUserVote(userVote => ({...createdVote}));
         console.log({userVote}); 
       } catch(err) {
@@ -76,6 +79,8 @@ export default function Post(props) {
         console.log(res);
         // setUserVote({...userVote, value});
         setUserVote(userVote => ({...userVote, value}));
+        setWeight(weight => weight -  2 * userVote.value); 
+
         console.log({userVote}); 
 
 
@@ -92,6 +97,7 @@ export default function Post(props) {
       console.log(res); 
       // Because 0 => No vote on this post 
       // setUserVote(undefined); 
+      setWeight(weight => weight - userVote.value)
       setUserVote(userVote => ({}));
       console.log({userVote}); 
 
@@ -111,7 +117,7 @@ export default function Post(props) {
           onClick={ handleUpvote } 
           data-clicked={ userVote?.value == 1 ? true : false }className="post-vote-btn">⬆️</button>
 
-          <p className="post-weight">{weight || "unknown"}</p>
+          <p className="post-weight">{weight != null ? weight : "unknown"}</p>
 
           <button 
           data-clicked={ userVote?.value == -1 ? true : false }
