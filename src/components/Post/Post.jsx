@@ -58,7 +58,7 @@ export default function Post(props) {
         // console.log(res); 
         // console.log({createdVote}); 
         // console.log(res.data.vote); 
-        setWeight(weight => weight + userVote.value); 
+        setWeight(weight => weight + createdVote.value); 
 
         setUserVote(userVote => ({...createdVote}));
         console.log({userVote}); 
