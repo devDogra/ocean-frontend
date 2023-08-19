@@ -116,10 +116,7 @@ export default function Post(props) {
         <h3 className="post-title">{title || "--  No Title -- "}</h3>
         {
           props.authorIsLoggedInUser && 
-          <span className="post-controls-icon-container">
-            <img src={trashIcon} alt="" className="post-controls-icon"/>
-            <img src={trashIconHover} alt="" className="post-controls-icon hover"/>
-          </span>
+          <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={() => {}}/>
         }
 
 
