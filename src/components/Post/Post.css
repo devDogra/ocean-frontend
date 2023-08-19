@@ -48,3 +48,23 @@
 .post-vote-btn:hover {
   background-color: var(--color3);
 }
+
+
+.post-controls-icon { 
+  height: 1.5em; 
+  width: auto; 
+}
+.post-controls-icon-container img:nth-child(2) {
+  display: none; 
+}
+.post-controls-icon-container:hover img:nth-child(1) {
+  display: none;
+}
+.post-controls-icon-container:hover img:nth-child(2) {
+  display: inline-block; 
+}
+
+.post-header {
+  display: flex; 
+  justify-content: space-between;
+}

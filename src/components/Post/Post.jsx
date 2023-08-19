@@ -4,6 +4,8 @@ import axios from "axios";
 import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
 import { useEffect, useState } from "react";
 import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
+import trashIcon from "./trashIcon.svg"; 
+import trashIconHover from "./trashIconHover.svg"; 
 
 export default function Post(props) {
   const {_id, author, currentUserVote} = props;
@@ -108,7 +110,20 @@ export default function Post(props) {
  
   return (
     <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote?._id }>
-      <h3 className="post-title">{title || "--  No Title -- "}</h3>
+
+      <header className="post-header">
+        <h3 className="post-title">{title || "--  No Title -- "}</h3>
+        {
+          props.authorIsLoggedInUser && 
+          <span className="post-controls-icon-container">
+            <img src={trashIcon} alt="" className="post-controls-icon"/>
+            <img src={trashIconHover} alt="" className="post-controls-icon hover"/>
+          </span>
+        }
+
+      </header>
+
+
       <p className="post-content">{content}</p>
       <div className="post-info">
         <p className="post-author">{author?.username || "unknown"}</p>
