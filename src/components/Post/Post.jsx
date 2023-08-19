@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
 import trashIcon from "./trashIcon.svg"; 
 import trashIconHover from "./trashIconHover.svg"; 
+import HoverIcon from "../HoverIcon/HoverIcon";
 
 export default function Post(props) {
   const {_id, author, currentUserVote} = props;
@@ -120,6 +121,7 @@ export default function Post(props) {
             <img src={trashIconHover} alt="" className="post-controls-icon hover"/>
           </span>
         }
+
 
       </header>
 
