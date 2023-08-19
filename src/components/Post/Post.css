@@ -2,19 +2,24 @@
   padding: 0.5vw;
   background-color: var(--color7);
   border-radius: 0.75rem;
+  
+  display: flex; 
+  flex-direction: column;
+  /* max-height: 20vh;  */
 }
 .post:hover {
   box-shadow: 0px 0px 4px 4px;
   cursor: pointer;
 }
 .post-content {
-  height: 400px;
   text-overflow: hidden;
   overflow: clip;
+  text-overflow: ellipsis;
 }
 .post-info {
   margin: 0;
   font-size: 1rem;
+  margin-top: auto; 
   padding-top: 1vw;
   display: flex;
   justify-content: space-between;

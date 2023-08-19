@@ -7,6 +7,7 @@ import axios from "axios";
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
 import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
 import useRedirectIfNotLoggedIn from "../../utils/functions/redirectIfNotLoggedIn";
+import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
 
 
 export default function Feed() {
@@ -14,12 +15,18 @@ export default function Feed() {
 
   const [posts, setPosts] = useState([]);
   const [postIdToVoteMap, setPostIdToVoteMap] = useState(new Map());
+  const [loggedInUserId, setLoggedInUserId] = useState();
 
   useEffect(() => {
     // Load all posts
     (async () => {
       const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
       const config = getAxiosRequestConfig(token);
+
+      setLoggedInUserId(
+        getLoggedInUserIdFromJWT(token)
+      );
+
       try {
         const { data: fetchedPosts } = await axios.get(
           apiURL + "/posts",
@@ -65,9 +72,11 @@ export default function Feed() {
           const postProps = {
             ...post, 
             currentUserVote, 
-            weight: post.upvoteCount - post.downvoteCount
+            weight: post.upvoteCount - post.downvoteCount,
+            authorIsLoggedInUser: post.author._id == loggedInUserId,
           }
-          {console.log(postProps)}
+          console.log("POST PROPS: "); 
+          console.log(postProps, post.author._id, loggedInUserId);
           return <Post key={index} {...postProps}  />;
         })}
       </div>
