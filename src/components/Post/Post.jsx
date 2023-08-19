@@ -9,7 +9,7 @@ import trashIconHover from "./trashIconHover.svg";
 import HoverIcon from "../HoverIcon/HoverIcon";
 
 export default function Post(props) {
-  const {_id, author, currentUserVote} = props;
+  const {_id, author, currentUserVote, onDelete} = props;
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
   const [weight, setWeight] = useState(props.weight);
@@ -108,7 +108,28 @@ export default function Post(props) {
     }
 
   }
- 
+
+  async function deletePost() {
+    console.log("DELETING POST ===> ....."); 
+    console.log(_id); 
+
+    const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
+    const loggedInUserId = getLoggedInUserIdFromJWT(token);
+    const config = getAxiosRequestConfig(token);
+
+
+    const postToDeleteUrl = apiURL + "/posts/" + _id; 
+      try {
+        const res = await axios.delete(postToDeleteUrl, config);
+        console.log({deletionResponse: res}); 
+        onDelete(); 
+        alert("Post deleted"); 
+      } catch(err) {
+        console.log(err); 
+        alert("Error deleting post"); 
+      }
+    }
+
   return (
     <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote?._id }>
 
@@ -116,7 +137,7 @@ export default function Post(props) {
         <h3 className="post-title">{title || "--  No Title -- "}</h3>
         {
           props.authorIsLoggedInUser && 
-          <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={() => {}}/>
+          <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
         }
 
 

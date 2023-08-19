@@ -74,6 +74,9 @@ export default function Feed() {
             currentUserVote, 
             weight: post.upvoteCount - post.downvoteCount,
             authorIsLoggedInUser: post.author._id == loggedInUserId,
+            onDelete: ()  => {
+              setPosts(posts => posts.filter((p, i) => i !== index))
+            }
           }
           console.log("POST PROPS: "); 
           console.log(postProps, post.author._id, loggedInUserId);
