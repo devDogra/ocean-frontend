@@ -2,18 +2,20 @@ import "./Post.css";
 import { LOCAL_STORAGE_JWT_KEY, apiURL } from "../../fakeEnvVars";
 import axios from "axios";
 import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
 import trashIcon from "./trashIcon.svg"; 
 import trashIconHover from "./trashIconHover.svg"; 
 import HoverIcon from "../HoverIcon/HoverIcon";
 
 export default function Post(props) {
-  const {_id, author, currentUserVote, onDelete} = props;
+  const {_id, author, currentUserVote, onDelete, tags} = props;
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
   const [weight, setWeight] = useState(props.weight);
   const [userVote, setUserVote] = useState();
+
+  const titleTagsParaRef = useRef(null); 
 
   useEffect(() => {
     // Get what the currently logged in user's vote is on this post
@@ -136,16 +138,29 @@ export default function Post(props) {
       <header className="post-header">
         
         <h3 className="post-title">
-          <span className="post-title-tags-icon">#</span>
+          <span 
+            onMouseEnter={() => titleTagsParaRef.current.classList.add("show") } 
+            onMouseLeave={() => titleTagsParaRef.current.classList.remove("show") }
+            className="post-title-tags-icon">
+              #
+            </span>
+ 
           {title || "--  No Title -- "}
         </h3>
+  
         {
           props.authorIsLoggedInUser && 
           <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
         }
 
-
       </header>
+        <p ref={titleTagsParaRef} className="post-title-tags">
+            {
+              tags.map(tag => {
+                return <span className="tag-span">{`#${tag}`}</span>
+              })
+            }
+        </p>
 
 
       <p className="post-content">{content}</p>

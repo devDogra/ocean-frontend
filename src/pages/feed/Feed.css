@@ -40,7 +40,8 @@
 
   display: grid;
   gap: 1vw;
-  grid-template-columns: repeat(auto-fill, minmax(min(15rem, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(30ch, 100%), 1fr));
+  /* grid-template-columns: repeat(auto-fit, minmax(50ch, 1fr)); */
   grid-auto-rows: min-content; 
 }
 
