@@ -62,7 +62,7 @@ export default function Feed() {
     })();
   }, []);
 
-  function removePost(index){
+  function removePostFromUI(index){
     setPosts(posts => posts.filter((p, i) => i !== index))
   }
   
@@ -78,7 +78,7 @@ export default function Feed() {
             currentUserVote, 
             weight: post.upvoteCount - post.downvoteCount,
             authorIsLoggedInUser: post.author._id == loggedInUserId,
-            onDelete:  () => removePost(index),
+            onDelete:  () => removePostFromUI(index),
           }
           console.log("POST PROPS: "); 
           console.log(postProps, post.author._id, loggedInUserId);

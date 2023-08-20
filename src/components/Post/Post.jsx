@@ -134,7 +134,11 @@ export default function Post(props) {
     <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote?._id }>
 
       <header className="post-header">
-        <h3 className="post-title">{title || "--  No Title -- "}</h3>
+        
+        <h3 className="post-title">
+          <span className="post-title-tags-icon">#</span>
+          {title || "--  No Title -- "}
+        </h3>
         {
           props.authorIsLoggedInUser && 
           <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
