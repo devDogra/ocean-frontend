@@ -32,8 +32,6 @@
   background-color: var(--color2);
   color: white; 
   white-space: nowrap;
-}
-.tag-span:hover {
   font-weight: bold; 
 }
 .post-title-tags {

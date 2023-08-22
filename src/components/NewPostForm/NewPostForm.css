@@ -16,4 +16,7 @@
     background-color: var(--color4);
     cursor: pointer;
 }
-  
+
+span.highlighted-tags {
+    background-color: green;
+}
