@@ -21,12 +21,14 @@ export default function NewPostForm() {
 
         let form = event.target; 
         let formDataJson = getFormJSONData(form); 
+        const tags = extractHashtags(formDataJson.content); 
         formDataJson.author = loggedInUserId; 
+        formDataJson.tags = tags; 
+        
         console.log({formDataJson}); 
-        console.log(extractHashtags(formDataJson.content)); 
 
         try {
-            // await axios.post(apiURL + '/posts', formDataJson, config);
+            await axios.post(apiURL + '/posts', formDataJson, config);
             alert("Post created"); 
         } catch(err) {
             alert("ERROR: Could not create post"); 
@@ -35,7 +37,7 @@ export default function NewPostForm() {
     
     function extractHashtags(content) {
         const hashtagRegex = new RegExp("#+[a-zA-Z0-9(_)]{1,}", "g");
-        const tags = content.match(hashtagRegex);
+        const tags = content.match(hashtagRegex).map(tag => tag.slice(1));
         return tags; 
     }
 
