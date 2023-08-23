@@ -130,8 +130,9 @@ export default function Post(props) {
   /* ------------------------------- Editing -------------------------------- */
   async function applyEdit() {
     const editedPost = await editPost();
-    console.log(editedPost.content); 
+    setContent(editedPost.content);
     toggleEditBox(); 
+
   }
 
 
@@ -170,17 +171,18 @@ export default function Post(props) {
     const newContent = editBoxTextareaRef.current.value; 
     const newTags = extractHashtags(newContent); 
 
-    const editedPost = {
+    const editedPostData = {
       content: newContent, 
       tags: newTags,
     }
     
-    console.log({editedPost}); 
+    console.log({editedPostData}); 
 
+    const url = `${apiURL}/posts/${_id}`;
     try {
-        // await axios.post(apiURL + '/posts', formDataJson, config);
+        const { data: { updatedPost }} = await axios.patch(url, editedPostData, config);
         alert("Post edited"); 
-        return editedPost; 
+        return updatedPost;
     } catch(err) {
         alert("ERROR: Could not edit post"); 
     }
