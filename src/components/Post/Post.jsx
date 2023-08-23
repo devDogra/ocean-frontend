@@ -13,9 +13,10 @@ import applyEditIcon from "./applyEditIcon.svg";
 import applyEditHoverIcon from "./applyEditHoverIcon.svg"; 
 
 export default function Post(props) {
-  const {_id, author, currentUserVote, onDelete, tags} = props;
+  const {_id, author, currentUserVote, onDelete, tags, createdAt} = props;
   const [title, setTitle] = useState(props.title);
   const [content, setContent] = useState(props.content);
+  const [updatedAt, setUpdatedAt] = useState(props.updatedAt);
   const [weight, setWeight] = useState(props.weight);
   const [userVote, setUserVote] = useState();
   const [editBoxOpened, setEditBoxOpened] = useState(false); 
@@ -131,6 +132,7 @@ export default function Post(props) {
   async function applyEdit() {
     const editedPost = await editPost();
     setContent(editedPost.content);
+    setUpdatedAt(editedPost.updatedAt); 
     toggleEditBox(); 
 
   }
@@ -138,6 +140,21 @@ export default function Post(props) {
 
   function toggleEditBox() {
     setEditBoxOpened(!editBoxOpened);
+  }
+
+  function getPrettyDateTime(DateISOString) {
+    const date = new Date(DateISOString);
+    
+    const dateOptions = { weekday: 'short', month: 'short', day: 'numeric' };
+    const timeOptions = { hour: 'numeric', minute: 'numeric' }; 
+    
+    const prettyDateString = (date.toLocaleString("en-US", dateOptions)) 
+    const prettyTimeString = (date.toLocaleTimeString("en-US", timeOptions)) 
+    // console.log({
+      // prettyDateString, prettyTimeString
+    // })
+    const prettyDateTimeString = `${prettyDateString}, ${prettyTimeString}`
+    return prettyDateTimeString;  
   }
 
   /* -------------------------------- API CALLS -----------------------------*/
@@ -240,7 +257,15 @@ export default function Post(props) {
         }
       </p>
       <div className="post-info">
-        <p className="post-author">{author?.username || "unknown"}</p>
+        <div className="post-authorship-info">
+          <p className="post-author">{author?.username || "unknown"}</p>
+          {
+            updatedAt && 
+            <p className="post-last-edited">
+              {`last edited at ${getPrettyDateTime(updatedAt)}`}
+            </p>
+          }
+        </div>
         <div className="post-weight-controls">
           <button 
           onClick={ handleUpvote } 

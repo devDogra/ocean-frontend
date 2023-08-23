@@ -95,6 +95,13 @@
 .post-weight-controls {
   display: flex; 
 }
+.post-last-edited {
+  font-style: italic;
+  font-size: .75em; 
+}
+.post-last-edited::before {
+  content: "-";
+}
 .post-vote-btn {
   font-size: 155%; 
   font-weight: bolder;
