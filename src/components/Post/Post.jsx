@@ -22,6 +22,7 @@ export default function Post(props) {
 
 
   const titleTagsParaRef = useRef(null); 
+  const editBoxTextareaRef = useRef(null);
 
   useEffect(() => {
     // Get what the currently logged in user's vote is on this post
@@ -35,6 +36,7 @@ export default function Post(props) {
 
   }, [])
 
+  /* ------------------------------ Voting --------------------------------- */
   function noUserVote() {
     return Object.keys(userVote).length === 0; 
   }
@@ -116,33 +118,28 @@ export default function Post(props) {
     }
 
   }
-
-  async function editPost() {
-    console.log("EDITING POST ===> ....."); 
-    console.log(_id); 
   
-    const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
-    const loggedInUserId = getLoggedInUserIdFromJWT(token);
-    const config = getAxiosRequestConfig(token);
+ 
 
-    // const postToEditUrl = apiURL + "/posts/" + _id;
-    
-    // try {
-    //   const res = await axios.delete(postToDeleteUrl, config);
-    //   // console.log({deletionResponse: res}); 
-    //   onDelete(); 
-    //   alert("Post deleted"); 
-    // } catch(err) {
-    //   console.log(err); 
-    //   alert("Error deleting post"); 
-    // }
-
+  function extractHashtags(content) {
+      const hashtagRegex = new RegExp("#+[a-zA-Z0-9(_)]{1,}", "g");
+      const tags = content.match(hashtagRegex)?.map(tag => tag.slice(1));
+      return tags || []; 
   }
+
+  /* ------------------------------- Editing -------------------------------- */
+  async function applyEdit() {
+    const editedPost = await editPost();
+    console.log(editedPost.content); 
+    toggleEditBox(); 
+  }
+
 
   function toggleEditBox() {
     setEditBoxOpened(!editBoxOpened);
   }
 
+  /* -------------------------------- API CALLS -----------------------------*/
   async function deletePost() {
     console.log("DELETING POST ===> ....."); 
     console.log(_id); 
@@ -162,7 +159,35 @@ export default function Post(props) {
         console.log(err); 
         alert("Error deleting post"); 
       }
+  }
+
+  async function editPost(event) {
+    const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
+    const loggedInUserId = getLoggedInUserIdFromJWT(token);
+    const config = getAxiosRequestConfig(token);
+
+    
+    const newContent = editBoxTextareaRef.current.value; 
+    const newTags = extractHashtags(newContent); 
+
+    const editedPost = {
+      content: newContent, 
+      tags: newTags,
     }
+    
+    console.log({editedPost}); 
+
+    try {
+        // await axios.post(apiURL + '/posts', formDataJson, config);
+        alert("Post edited"); 
+        return editedPost; 
+    } catch(err) {
+        alert("ERROR: Could not edit post"); 
+    }
+
+  }
+
+  /* -------------------------------- JSX ---------------------------------- */
 
   return (
     <div className="post" data-post-id={_id} data-author-id={author?._id} data-currentUserVote={ userVote?._id }>
@@ -185,11 +210,11 @@ export default function Post(props) {
           <div className="post-control-icons-container">
             {
               editBoxOpened && 
-              <HoverIcon  iconPath={applyEditIcon} hoverIconPath={applyEditHoverIcon} onClick={() => {}}/>
+              <HoverIcon  iconPath={applyEditIcon} hoverIconPath={applyEditHoverIcon} onClick={applyEdit}/>
             }
 
             <HoverIcon iconPath={editIcon} hoverIconPath={editIconHover} onClick={toggleEditBox}/>
-            
+
             <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
             
 
@@ -208,7 +233,7 @@ export default function Post(props) {
 
       <p className="post-content">
         { editBoxOpened ? 
-            <textarea className="post-content-edit-box" type="text" placeholder="editbox" /> : 
+            <textarea ref={editBoxTextareaRef} className="post-content-edit-box" type="text" placeholder="editbox" /> : 
             content
         }
       </p>
