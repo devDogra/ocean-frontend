@@ -10,6 +10,7 @@ import Register from "./pages/register/Register.jsx";
 import Profile from "./pages/profile/Profile.jsx";
 import NewPost from "./pages/new-post/NewPost.jsx";
 import "./normalize.css";
+import "./App.css"; 
 
 // import "./App.css";
 function App() {

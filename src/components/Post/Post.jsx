@@ -180,11 +180,11 @@ export default function Post(props) {
   
         {
           props.authorIsLoggedInUser && 
-          <>
+          <div className="post-control-icons-container">
             <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
             
             <HoverIcon iconPath={editIcon} hoverIconPath={editIconHover} onClick={toggleEditBox}/>
-          </>
+          </div>
         }
 
       </header>
@@ -199,7 +199,7 @@ export default function Post(props) {
 
       <p className="post-content">
         { editBoxOpened ? 
-            <input type="text" placeholder="editbox" /> : 
+            <textarea className="post-content-edit-box" type="text" placeholder="editbox" /> : 
             content
         }
       </p>

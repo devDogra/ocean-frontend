@@ -57,6 +57,22 @@
   overflow: clip;
   text-overflow: ellipsis;
 }
+.post-content-edit-box {
+  width: 98%; 
+  min-height:max-content;
+  resize: none;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2); 
+  padding: .5em; 
+  appearance: none;
+}
+.post-content-edit-box:focus {
+  /* border: 1px solid rgba(0, 0, 0, 0.2);  */
+  outline: none;
+  /* border:1px solid red; */
+  /* box-shadow: 0 0 10px #719ECE; */
+  /* border: 2px solid red;  */
+}
 .post-info {
   margin: 0;
   /* margin-top: 1em;  */
