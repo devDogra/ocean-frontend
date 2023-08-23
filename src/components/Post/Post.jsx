@@ -9,6 +9,8 @@ import trashIconHover from "./trashIconHover.svg";
 import HoverIcon from "../HoverIcon/HoverIcon";
 import editIcon from "./editIcon.svg";
 import editIconHover from "./editIconHover.svg";
+import applyEditIcon from "./applyEditIcon.png"; 
+import applyEditHoverIcon from "./applyEditHoverIcon.png"; 
 
 export default function Post(props) {
   const {_id, author, currentUserVote, onDelete, tags} = props;
@@ -181,9 +183,16 @@ export default function Post(props) {
         {
           props.authorIsLoggedInUser && 
           <div className="post-control-icons-container">
+            {
+              editBoxOpened && 
+              <HoverIcon  iconPath={applyEditIcon} hoverIconPath={applyEditHoverIcon} onClick={() => {}}/>
+            }
+
+            <HoverIcon iconPath={editIcon} hoverIconPath={editIconHover} onClick={toggleEditBox}/>
+            
             <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
             
-            <HoverIcon iconPath={editIcon} hoverIconPath={editIconHover} onClick={toggleEditBox}/>
+
           </div>
         }
 
