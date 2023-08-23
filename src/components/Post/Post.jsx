@@ -123,7 +123,7 @@ export default function Post(props) {
     const postToDeleteUrl = apiURL + "/posts/" + _id; 
       try {
         const res = await axios.delete(postToDeleteUrl, config);
-        console.log({deletionResponse: res}); 
+        // console.log({deletionResponse: res}); 
         onDelete(); 
         alert("Post deleted"); 
       } catch(err) {

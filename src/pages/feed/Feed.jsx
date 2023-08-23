@@ -32,7 +32,7 @@ export default function Feed() {
           apiURL + "/posts",
           config
         );
-        console.log({fetchedPosts});
+        // console.log({fetchedPosts});
         setPosts(fetchedPosts);
       } catch (err) {
         console.log(err.statusCode);
@@ -47,13 +47,13 @@ export default function Feed() {
       try {
         // GET /votes by default gets a user his own votes
         const { data: currentUserVotes } = await axios.get(apiURL + "/votes", config);
-        console.log(currentUserVotes) ; 
+        // console.log(currentUserVotes) ; 
 
         const tempMap = new Map();
         currentUserVotes.forEach(vote => {
           tempMap.set(vote.post, vote);
         })
-        console.log(tempMap); 
+        // console.log(tempMap); 
         setPostIdToVoteMap(new Map(tempMap));
       } catch(err) {
         console.log(err.statusCode);
@@ -62,8 +62,8 @@ export default function Feed() {
     })();
   }, []);
 
-  function removePostFromUI(index){
-    setPosts(posts => posts.filter((p, i) => i !== index))
+  function removePostFromUI(idToDel){
+    setPosts(posts.filter((p, i) => p._id != idToDel)); 
   }
   
   return (
@@ -71,18 +71,20 @@ export default function Feed() {
       <Header />
 
       <div id="app-board">
-        {posts.map((post, index) => {
+        {
+        
+        posts.map((post, index) => {
           const currentUserVote = postIdToVoteMap.get(post._id);
           const postProps = {
             ...post, 
             currentUserVote, 
             weight: post.upvoteCount - post.downvoteCount,
             authorIsLoggedInUser: post.author._id == loggedInUserId,
-            onDelete:  () => removePostFromUI(index),
+            onDelete:  () => removePostFromUI(post._id),
           }
-          console.log("POST PROPS: "); 
-          console.log(postProps, post.author._id, loggedInUserId);
-          return <Post key={index} {...postProps}  />;
+          // console.log("POST PROPS: "); 
+          // console.log(postProps, post.author._id, loggedInUserId);
+          return <Post key={post._id} {...postProps}  />;
         })}
       </div>
 

@@ -37,8 +37,8 @@ export default function NewPostForm() {
     
     function extractHashtags(content) {
         const hashtagRegex = new RegExp("#+[a-zA-Z0-9(_)]{1,}", "g");
-        const tags = content.match(hashtagRegex).map(tag => tag.slice(1));
-        return tags; 
+        const tags = content.match(hashtagRegex)?.map(tag => tag.slice(1));
+        return tags || []; 
     }
 
 
