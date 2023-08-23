@@ -7,6 +7,8 @@ import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFro
 import trashIcon from "./trashIcon.svg"; 
 import trashIconHover from "./trashIconHover.svg"; 
 import HoverIcon from "../HoverIcon/HoverIcon";
+import editIcon from "./editIcon.jpg";
+import editIconHover from "./editIconHover.jpg";
 
 export default function Post(props) {
   const {_id, author, currentUserVote, onDelete, tags} = props;
@@ -14,6 +16,8 @@ export default function Post(props) {
   const [content, setContent] = useState(props.content);
   const [weight, setWeight] = useState(props.weight);
   const [userVote, setUserVote] = useState();
+  const [editBoxOpened, setEditBoxOpened] = useState(false); 
+
 
   const titleTagsParaRef = useRef(null); 
 
@@ -111,6 +115,32 @@ export default function Post(props) {
 
   }
 
+  async function editPost() {
+    console.log("EDITING POST ===> ....."); 
+    console.log(_id); 
+  
+    const token = localStorage.getItem(LOCAL_STORAGE_JWT_KEY);
+    const loggedInUserId = getLoggedInUserIdFromJWT(token);
+    const config = getAxiosRequestConfig(token);
+
+    // const postToEditUrl = apiURL + "/posts/" + _id;
+    
+    // try {
+    //   const res = await axios.delete(postToDeleteUrl, config);
+    //   // console.log({deletionResponse: res}); 
+    //   onDelete(); 
+    //   alert("Post deleted"); 
+    // } catch(err) {
+    //   console.log(err); 
+    //   alert("Error deleting post"); 
+    // }
+
+  }
+
+  function toggleEditBox() {
+    setEditBoxOpened(!editBoxOpened);
+  }
+
   async function deletePost() {
     console.log("DELETING POST ===> ....."); 
     console.log(_id); 
@@ -150,7 +180,11 @@ export default function Post(props) {
   
         {
           props.authorIsLoggedInUser && 
-          <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
+          <>
+            <HoverIcon iconPath={trashIcon} hoverIconPath={trashIconHover} onClick={deletePost}/>
+            
+            <HoverIcon iconPath={editIcon} hoverIconPath={editIconHover} onClick={toggleEditBox}/>
+          </>
         }
 
       </header>
@@ -163,7 +197,12 @@ export default function Post(props) {
         </p>
 
 
-      <p className="post-content">{content}</p>
+      <p className="post-content">
+        { editBoxOpened ? 
+            <input type="text" placeholder="editbox" /> : 
+            content
+        }
+      </p>
       <div className="post-info">
         <p className="post-author">{author?.username || "unknown"}</p>
         <div className="post-weight-controls">
