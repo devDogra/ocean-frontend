@@ -9,8 +9,8 @@ import trashIconHover from "./trashIconHover.svg";
 import HoverIcon from "../HoverIcon/HoverIcon";
 import editIcon from "./editIcon.svg";
 import editIconHover from "./editIconHover.svg";
-import applyEditIcon from "./applyEditIcon.png"; 
-import applyEditHoverIcon from "./applyEditHoverIcon.png"; 
+import applyEditIcon from "./applyEditIcon.svg"; 
+import applyEditHoverIcon from "./applyEditHoverIcon.svg"; 
 
 export default function Post(props) {
   const {_id, author, currentUserVote, onDelete, tags} = props;
