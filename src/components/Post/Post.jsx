@@ -4,6 +4,7 @@ import axios from "axios";
 import getAxiosRequestConfig from "../../utils/functions/getAxiosRequestConfig";
 import { useEffect, useRef, useState } from "react";
 import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFromJWT";
+import parseISOString from "../../utils/functions/parseISOString";
 import trashIcon from "./trashIcon.svg"; 
 import trashIconHover from "./trashIconHover.svg"; 
 import HoverIcon from "../HoverIcon/HoverIcon";
@@ -11,6 +12,7 @@ import editIcon from "./editIcon.svg";
 import editIconHover from "./editIconHover.svg";
 import applyEditIcon from "./applyEditIcon.svg"; 
 import applyEditHoverIcon from "./applyEditHoverIcon.svg"; 
+
 
 export default function Post(props) {
   const {_id, author, currentUserVote, onDelete, tags, createdAt} = props;
@@ -29,6 +31,7 @@ export default function Post(props) {
     // Get what the currently logged in user's vote is on this post
     // const url = `${apiURL}/votes`
     console.log(props);
+    console.log(props.updatedAt); 
     console.log({currentUserVote}); 
     console.log({...currentUserVote}); 
     setUserVote({...currentUserVote });
@@ -131,8 +134,13 @@ export default function Post(props) {
   /* ------------------------------- Editing -------------------------------- */
   async function applyEdit() {
     const editedPost = await editPost();
+    
+    const dateString = parseISOString(editedPost.updatedAt);
+    const newUpdatedAt = new Date(dateString).toISOString();
+
     setContent(editedPost.content);
-    setUpdatedAt(editedPost.updatedAt); 
+    setUpdatedAt(newUpdatedAt); 
+
     toggleEditBox(); 
 
   }
@@ -150,9 +158,7 @@ export default function Post(props) {
     
     const prettyDateString = (date.toLocaleString("en-US", dateOptions)) 
     const prettyTimeString = (date.toLocaleTimeString("en-US", timeOptions)) 
-    // console.log({
-      // prettyDateString, prettyTimeString
-    // })
+
     const prettyDateTimeString = `${prettyDateString}, ${prettyTimeString}`
     return prettyDateTimeString;  
   }
@@ -191,6 +197,7 @@ export default function Post(props) {
     const editedPostData = {
       content: newContent, 
       tags: newTags,
+      updatedAt: (new Date()).toISOString(),
     }
     
     console.log({editedPostData}); 
