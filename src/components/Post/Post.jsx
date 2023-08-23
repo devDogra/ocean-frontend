@@ -7,8 +7,8 @@ import getLoggedInUserIdFromJWT from "../../utils/functions/getLoggedInUserIdFro
 import trashIcon from "./trashIcon.svg"; 
 import trashIconHover from "./trashIconHover.svg"; 
 import HoverIcon from "../HoverIcon/HoverIcon";
-import editIcon from "./editIcon.jpg";
-import editIconHover from "./editIconHover.jpg";
+import editIcon from "./editIcon.svg";
+import editIconHover from "./editIconHover.svg";
 
 export default function Post(props) {
   const {_id, author, currentUserVote, onDelete, tags} = props;
