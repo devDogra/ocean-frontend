@@ -15,6 +15,7 @@ export default function Profile() {
 
     const [email, setEmail] = useState();
     const [username, setUsername] = useState();
+    const [stats, setStats] = useState();
 
     useEffect(() => {
         async function main() {
@@ -26,10 +27,12 @@ export default function Profile() {
             const config = getAxiosRequestConfig(token);
         
             try {
-                const {data: loggedInUser} = await axios.get(apiURL + '/users' + '/' + loggedInUserId, config);
-
+                const url = `${apiURL}/users/${loggedInUserId}?statistics=true`
+                const {data: loggedInUser} = await axios.get(url, config);
+                console.log(loggedInUser); 
                 setEmail(loggedInUser.email);
                 setUsername(loggedInUser.username);
+                setStats(() => ({...loggedInUser.statistics}))
             } catch(err) {
                 alert("Error loading profile");
                 return;
@@ -40,7 +43,7 @@ export default function Profile() {
     return (
         <>
             <Header />
-            <ProfileCard email={email} username={username}/>
+            <ProfileCard email={email} username={username} stats={{...stats}}/>
         </>
     );
 }
